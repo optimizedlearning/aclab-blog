@@ -21,7 +21,7 @@ After selecting a loss function $\ell: \mathcal{Y} \times \mathcal{Y} \to \mathb
 $$\mathcal{L}_\mathcal{S} (\ell_f) = \frac{1}{|\mathcal{S}|} \sum_{i=1}^{|\mathcal{S}|} \ell(f(x_i), y_i)$$
 
 Can we confidently claim that the trained model $f$ performs well? It likely to claim so by the comparison to other state-of-the-art models. Another objective approach is to consider the general learning framework and then we will realize the problem:
-![Diagram showing Learning Problem](_images/20240604/full.png)
+![Diagram showing Learning Problem](../../../assets/images/20240604/full.png)
 <!-- ![20240605_local](https://hackmd.io/_uploads/ryqx2t1BR.png) -->
 
 - We were only given a sample dataset $\mathcal{S} \subset \mathcal{D}$, which could be a small fraction of the population data $\mathcal{D}$. Let's assume $\mathcal{S} = \{(x_i,y_i) \}_{i=1}^{m}$ is uniformly sampled from $\mathcal{D}$.
@@ -29,7 +29,7 @@ Can we confidently claim that the trained model $f$ performs well? It likely to 
 - The definition of 'performing well' should be evaluated on the population $\mathcal{D}$, that is:
 $$\mathcal{L} (\ell_f) = \mathbb{E}_{(x,y) \in \mathcal{D}} [ \ell(f(x), y) ]$$
 
-We can only estimate how $f$ performs on $\mathcal{S}$. If $\mathcal{L}_{\mathcal{S}} (\ell_f)$ is small, we hope $\mathcal{L} (\ell_f)$ is also small. That is, we desire $\mathcal{L}_{\mathcal{S}} (\ell_f) \approx \mathcal{L} (\ell_f)$. If this is the case, we say that $f$ generalizes well, and the discrepancy $|\mathcal{L} (\ell_f) - \mathcal{L}_{\mathcal{S}} (\ell_f)|$ is referred to as the **generalization error**. Furthermore, we want to understand the worst-case scenario for any $f \in \mathcal{F}$, hence we consider $\sup_{f \in \mathcal{F}}|\mathcal{L} (\ell_f) - \mathcal{L}_{\mathcal{S}} (\ell_f)|$. Alternative explaination is that we desire a uniform generalization error for all $f \in \mathcal{F}$ through the supremum.
+We can only estimate how $f$ performs on $\mathcal{S}$. If $\mathcal{L}_{\mathcal{S}} (\ell\_f)$ is small, we hope $\mathcal{L} (\ell\_f)$ is also small. That is, we desire $\mathcal{L}\_{\mathcal{S}} (\ell_f) \approx \mathcal{L} (\ell_f)$. If this is the case, we say that $f$ generalizes well, and the discrepancy $\|\mathcal{L} (\ell_f) - \mathcal{L}\_{\mathcal{S}} (\ell_f)\|$ is referred to as the **generalization error**. Furthermore, we want to understand the worst-case scenario for any $f \in \mathcal{F}$, hence we consider $\sup\_{f \in \mathcal{F}}\|\mathcal{L} (\ell_f) - \mathcal{L}\_{\mathcal{S}} (\ell_f)\|$. Alternative explaination is that we desire a uniform generalization error for all $f \in \mathcal{F}$ through the supremum.
 
 ### Rademacher Complexity
 
@@ -39,24 +39,24 @@ where $R_{\mathcal{S}} (\ell, \mathcal{F})$ is the sample Rademacher complexity:
 $$R_{\mathcal{S}} (\ell, \mathcal{F}) = \mathbb{E}\left[ \sup_{f \in \mathcal{F}} \frac{1}{|\mathcal{S}|} \sum_{i=1}^{|\mathcal{S}|} \sigma_i \ell(f(x_i), y_i ) \right]$$
 and $\sigma_i$ are independent Rademacher random variables: $\sigma_i = \pm 1$ with equal probabilities.
 
-The interpretation of $R_{\mathcal{S}} (\ell, \mathcal{F})$ is to quantify the complexity of $\ell_f$ for all $f \in \mathcal{F}$. The quantity $\frac{1}{|\mathcal{S}|} \sum_{i=1}^{|\mathcal{S}|} \sigma_i \ell(f(x_i), y_i )$ is a sample correlation between random noise $\sigma$ and $\ell_f$, interpreted as the ability to fit random labels.
+The interpretation of $R_{\mathcal{S}} (\ell, \mathcal{F})$ is to quantify the complexity of $\ell_f$ for all $f \in \mathcal{F}$. The quantity $\frac{1}{\|\mathcal{S}\|} \sum_{i=1}^{\|\mathcal{S}\|} \sigma_i \ell(f(x_i), y_i )$ is a sample correlation between random noise $\sigma$ and $\ell_f$, interpreted as the ability to fit random labels.
 
 ## The Paper
 
-The paper aims to tighten the generalization bound through the notion of 'Local Rademacher Complexity' by effectively bounding the generalization error through the Rademacher complexity of a subset $\mathcal{F}_r \subset \mathcal{F}$. Additionally, the sample size-dependent term in the previous bound was $O(1 / \sqrt{|\mathcal{S}|})$, which the paper also seeks to improve.
+The paper aims to tighten the generalization bound through the notion of 'Local Rademacher Complexity' by effectively bounding the generalization error through the Rademacher complexity of a subset $\mathcal{F}_r \subset \mathcal{F}$. Additionally, the sample size-dependent term in the previous bound was $O(1 / \sqrt{\|\mathcal{S}\|})$, which the paper also seeks to improve.
 
 In particular, the following intermediate result suggests that the generalization error depends on the variation $r$ of $\mathcal{F}$:
-![var_dependent](_images/20240604/var_dependent.png)
+![var_dependent](../../../assets/images/20240604/var_dependent.png)
 <!-- ![var_dependent](https://hackmd.io/_uploads/HkvOfVGBR.png) -->
 This highlights that if $\mathcal{F}$ naturally has a small $r$, then the sample size-dependent term is already improved.
 
 The actual proof is more complicated which considers a reweighted function class $\mathcal{G} = \{g = \frac{f}{w(f)}: f \in \mathcal{F}\}$, where the weight $w(f) \propto \mathbb{E} [\ell_f^2]$. Hence, the variance of the weighted function class $\mathcal{G}$ is small. Then, by partitioning $\mathcal{G}$ by weights and bounding their generalization error respectively and then uniformly, and finally converting the result from $\mathcal{G}$ back to $\mathcal{F}$, the main result is presented as follows:
-![res](_images/20240604/res.png)
+![res](../../../assets/images/20240604/res.png)
 <!-- ![res](https://hackmd.io/_uploads/Sy-n24fr0.png) -->
 
-In addition to the improved sample size term, the complexity term is also improved since $r^{\ast} \le \psi(r) = R_{\mathcal{S}} (\ell, \mathcal{F}_r) \le R_{\mathcal{S}} (\ell, \mathcal{F})$ for most $r > 0$ (the advantage is particularly important when $r$ is large). However, this also comes with a loss as the coefficient $\frac{K-1}{K} < 1$.
+In addition to the improved sample size term, the complexity term is also improved since $r^{\ast} \le \psi(r) = R_{\mathcal{S}} (\ell, \mathcal{F}\_r) \le R_{\mathcal{S}} (\ell, \mathcal{F})$ for most $r > 0$ (the advantage is particularly important when $r$ is large). However, this also comes with a loss as the coefficient $\frac{K-1}{K} < 1$.
 
 $\mathcal{F}_r$ requires the entire dataset $\mathcal{D}$; through the standard procedure of replacing it with the empirical version, we obtain a data-dependent bound:
-![res_data](_images/20240604/res_data.png)
+![res_data](../../../assets/images/20240604/res_data.png)
 <!-- ![res_data](https://hackmd.io/_uploads/HkjnnVMSC.png) -->
 
