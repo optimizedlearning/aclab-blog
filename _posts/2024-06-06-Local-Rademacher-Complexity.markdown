@@ -47,6 +47,8 @@ and $\sigma_i$ are independent Rademacher random variables: $\sigma_i = \pm 1$ w
 
 The interpretation of $R_{\mathcal{S}} (\ell, \mathcal{F})$ is to quantify the complexity of $\ell_f$ for all $f \in \mathcal{F}$. The quantity $\frac{1}{\|\mathcal{S}\|} \sum_{i=1}^{\|\mathcal{S}\|} \sigma_i \ell(f(x_i), y_i )$ is a sample correlation between random noise $\sigma$ and $\ell_f$, interpreted as the ability to fit random labels.
 
+---
+
 ## The Paper
 
 The paper aims to tighten the generalization bound through the notion of 'Local Rademacher Complexity' by effectively bounding the generalization error through the Rademacher complexity of a subset $\mathcal{F}_r \subset \mathcal{F}$. Additionally, the sample size-dependent term in the previous bound was $O(1 / \sqrt{\|\mathcal{S}\|})$, which the paper also seeks to improve.
