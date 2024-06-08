@@ -8,8 +8,14 @@ Rademacher complexity is crucial in statistical learning theory for understandin
 
 Before diving into the paper, let's use a motivating example to explain **generalization error** and provide some intuition on **Rademacher complexity**. (Feel free to skip directly to the discussion of the paper if you prefer.)
 
-- Table of Contents
-[ToC]
+---
+#### Table of Contents
+- [Motivation](#motivation)
+    - [Generalization Error](#generalization-error)
+    - [Rademacher Complexity](#rademacher-complexity)
+- [The Paper](#the-paper)
+
+---
 
 ## Motivation
 
