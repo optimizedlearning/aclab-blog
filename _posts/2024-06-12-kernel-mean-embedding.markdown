@@ -4,6 +4,17 @@ title: "Kernel Mean Embedding"
 date: 2024-06-12
 ---
 
+{% include toc.html %}
+
+## The Kernel Method
+{: ._sec }
+
+## Reproducing Kernel Hilbert Space (RKHS)
+{: ._sec }
+
+## Kernel Mean Embedding
+{: ._sec }
+
 {% capture def_kme %}
 This is the first definition. You can include **Markdown** and even LaTeX:
 

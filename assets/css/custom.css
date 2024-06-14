@@ -1,3 +1,6 @@
+/* 
+Custom enviroments: definition, theorem
+*/
 .definition, .theorem {
   display: flex;
   flex-direction: column;
@@ -31,4 +34,35 @@
 
 .theorem {
   border-left: 4px solid #2196F3;
+}
+
+
+/* 
+Table of Content
+*/
+.toc {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+.toc h2 {
+  margin-top: 0;
+}
+.toc ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.toc ul ul {
+  margin-left: 20px;
+}
+.toc li {
+  margin: 5px 0;
+}
+.toc a {
+  text-decoration: none;
+  color: #007BFF;
+}
+.toc a:hover {
+  text-decoration: underline;
 }

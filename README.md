@@ -2,7 +2,7 @@
 
 This is a website built with [Jekyll](https://jekyllrb.com/) to post blogs related to papers, readings, etc.
 
-### Usage
+## Usage
 
 Here's how you'd write your new post locally:
 1. Create a new markdown file with format `yyyy-mm-dd-YOUR-TITLE.markdown`.
@@ -30,7 +30,37 @@ And here's how you'd upload it:
 1. You can directly go to `_posts/` directory in GitHub and manually upload your markdown.
 2. Or you can clone this repo `git clone https://github.com/optimizedlearning/aclab-blog.git` and sync the new post via git.
 
-### Other Caveats
+## Advanced features
+
+### Theorem and definition environments
+
+You can include built-in environments similar to LaTeX `theorem` and `definition` as follow:
+```
+{% capture ENV_NAME %}
+You can write the content of your environment here. You can include **Markdown** and even LaTeX, e.g.,
+
+$$ a^2 + b^2 = c^2 $$
+{% endcapture %}
+{% include theorem.html title="ENV_TITLE" content=ENV_NAME %}
+```
+Replace `theorem.html` with `definition.html` for `definition` environment.
+
+### Automatic TOC
+
+You can use a built-in automatic table of content (TOC) by adding the following to your post:
+```
+{% include toc.html %}
+```
+However, you need to follow several simple rules so that TOC can parse correctly:
+- Only `h2` and `h3` will be included and structured.
+- Add `{: ._sec }` after your title, e.g.
+   ```
+   ## Section 1
+   {: ._sec }
+   ```
+   This tells the `toc` that these `h2,h3` doms are the actual sections to be collected.
+
+## Other Caveats
 
 - When your inline equations don't render, try to escape special characters with `\`. For example, use `\|` instead of `|` and use `\\|` for `\|`. Here's a list of special characters:
    ```
