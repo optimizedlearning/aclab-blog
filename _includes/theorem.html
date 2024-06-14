@@ -1,5 +1,5 @@
 <div class="theorem">
-  <strong class="title">Theorem ({{ include.title }})</strong>
+  <strong class="title">{{ include.type | default: "Theorem" }} {% if include.title %} ({{ include.title }}) {% endif %}</strong>
   <div class="content">
     {{ include.content }}
   </div>

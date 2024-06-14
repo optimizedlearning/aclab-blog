@@ -4,6 +4,8 @@ This is a website built with [Jekyll](https://jekyllrb.com/) to post blogs relat
 
 ## Usage
 
+### Make a new post
+
 Here's how you'd write your new post locally:
 1. Create a new markdown file with format `yyyy-mm-dd-YOUR-TITLE.markdown`.
 2. Start the markdown with the following:
@@ -17,24 +19,47 @@ Here's how you'd write your new post locally:
    This tells Jekyll your markdown uses the pre-defined `post` template.
 3. Write your blog. You can refer to [this post](https://github.com/optimizedlearning/aclab-blog/blob/master/_posts/2024-05-29-dummy-post.markdown) for syntax. You can also use popular markdown editors (e.g., from VSCode) to preview your post. 
 
+### Include an image, a pdf, etc.
+
 Here's how you'd include your own images (same for pdf):
 1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
 2. Use the markdown
    ```
    ![image-text](../../../assets/images/YOUR-DIRECTORY/IMAGE.jgp)
+   *IMAGE_CAPTION*
    ```
    Jekyll posts automatically have url of form `base_url/yyyy/mm/dd/TITLE.html`, so we need 3 `../` in relative url.
    *This feels quite dumb, and I'm trying to figure out a clean solution.*
+
+### Upload your post
 
 And here's how you'd upload it:
 1. You can directly go to `_posts/` directory in GitHub and manually upload your markdown.
 2. Or you can clone this repo `git clone https://github.com/optimizedlearning/aclab-blog.git` and sync the new post via git.
 
+
 ## Advanced features
+
+### Custom LaTeX Macros
+
+You can define your custom macro by including the following element in your post:
+```
+<div style="display:none">
+%
+% Your custom macros, e.g.,
+\newcommand{\x}{\boldsymbol{x}}
+%
+</div>
+```
+We also provide you a default list of macros. You can import these macros by adding
+```
+{% include latex_macros.html %}
+```
+Feel free to make your own list of macros! To do so, you can simply make a new file in `_includes/MACRO_NAME.html` and replace `latex_macros.html` in the previous code with your file name.
 
 ### Theorem and definition environments
 
-You can include built-in environments similar to LaTeX `theorem` and `definition` as follow:
+You can include built-in environments similar to LaTeX `theorem` and `definition` as follows:
 ```
 {% capture ENV_NAME %}
 You can write the content of your environment here. You can include **Markdown** and even LaTeX, e.g.,
@@ -59,6 +84,7 @@ However, you need to follow several simple rules so that TOC can parse correctly
    {: ._sec }
    ```
    This tells the `toc` that these `h2,h3` doms are the actual sections to be collected.
+
 
 ## Other Caveats
 
