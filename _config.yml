@@ -56,3 +56,9 @@ plugins:
 
 includes:
   - head.html
+
+# Enable Liquid processing in markdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  parse_block_html: true

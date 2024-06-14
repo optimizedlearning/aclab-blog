@@ -1,0 +1,34 @@
+.definition, .theorem {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 0;
+  box-shadow: 3px 3px 5px #888888; /* horizontal offset, vertical offset, blur radius, shadow color */
+
+  > * {
+    margin: 0;
+  }
+
+  .title, .content {
+    padding: 5px 10px;
+  }
+
+  .title {
+    display: block;
+    font-size: large;
+    font-weight: 500;
+    background-color: #f1f1f1;
+  }
+
+  .content {
+    background-color: #f9f9f9;
+  }
+}
+
+.definition {
+  border-left: 4px solid #2196F3;
+}
+
+.theorem {
+  border-left: 4px solid #2196F3;
+}
