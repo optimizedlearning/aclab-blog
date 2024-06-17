@@ -31,6 +31,19 @@ Here's how you'd include your own images (same for pdf):
    Jekyll posts automatically have url of form `base_url/yyyy/mm/dd/TITLE.html`, so we need 3 `../` in relative url.
    *This feels quite dumb, and I'm trying to figure out a clean solution.*
 
+### (Optional) Test your blog on your local device
+
+Optionally, you may want to preview your blog before you upload it. Here's how you can do it:
+1. Download [ruby](https://www.ruby-lang.org/en/downloads/).
+2. Run the following code:
+   ```
+   git clone https://github.com/optimizedlearning/aclab-blog.git
+   cd aclab-blog
+   bundle install
+   bundle exec jekyll serve
+   ```
+3. Go to `localhost:4000/aclab-blog`. Now you should see the website on your local device. Every time you modify your blog, just refresh the page and you will see the changes.
+
 ### Upload your post
 
 And here's how you'd upload it:
