@@ -58,10 +58,10 @@ And here's how you'd upload it:
 You can define your custom macro by including the following element in your post:
 ```
 <div style="display:none">
-%
+$
 % Your custom macros, e.g.,
 \newcommand{\x}{\boldsymbol{x}}
-%
+$
 </div>
 ```
 We also provide you a default list of macros. You can import these macros by adding
