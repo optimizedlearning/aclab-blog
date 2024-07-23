@@ -13,6 +13,7 @@ Here's how you'd write your new post locally:
     ---
     layout: post
     title: "YOUR TITLE"
+    author: "YOUR NAME"
     date: yyyy-mm-dd
     ---
    ```
@@ -24,7 +25,7 @@ Here's how you'd write your new post locally:
 Here's how you'd include your own images (same for pdf):
 1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
 2. Use the markdown
-   ```
+   ```markdown
    ![image-text](../../../assets/images/YOUR-DIRECTORY/IMAGE.jgp)
    *IMAGE_CAPTION*
    ```
@@ -53,10 +54,41 @@ And here's how you'd upload it:
 
 ## Advanced features
 
+### Automatic TOC
+
+We provide a built-in automatic table of content (TOC). By default, it is disabled. To enable it, you need to specify the following in the post config section:
+```
+---
+use_toc: true
+---
+```
+
+You need to comply to the following simple rules in order to allow TOC parse correctly:
+- Use `h2` for section and `h3` for subsections (i.e., `##` and `###` in markdown).
+- Add `{: ._sec }` after your sections and subsections. This tells the `toc` that these `h2,h3` DOMs are the actual sections to be collected.
+
+Below is an example of a structured section list.
+```markdown
+## Section 1
+{: ._sec }
+
+### Subsection 1.a
+{: ._sec }
+
+### Subsection 1.b
+{: ._sec }
+
+## Section 2
+{: ._sec }
+
+### Subsection 2.a
+{: ._sec }
+```
+
 ### Custom LaTeX Macros
 
-You can define your custom macro by including the following element in your post:
-```
+You can custom latex commands in a similar way to latex. To do so, you simply need to include this at the beginning of your post:
+```markdown
 <div style="display:none">
 $
 % Your custom macros, e.g.,
@@ -64,39 +96,32 @@ $
 $
 </div>
 ```
-We also provide you a default list of macros. You can import these macros by adding
+
+We also provide you a default list of macros including caligraphic letters, bold symbols, and blackboard letters (see `_includes/latex_macros.html` for details). You can enable it by specifying
 ```
-{% include latex_macros.html %}
+---
+use_macro: true
+---
 ```
-Feel free to make your own list of macros! To do so, you can simply make a new file in `_includes/MACRO_NAME.html` and replace `latex_macros.html` in the previous code with your file name.
+You can also make your own list of macros and save it globally for future use. To do so, you can create a new file `_includes/MACRO_NAME.html` and include this at the beginning of your post.
+```markdown
+{% include MACRO_NAME.html %}
+```
 
 ### Theorem and definition environments
 
-You can include built-in environments similar to LaTeX `theorem` and `definition` as follows:
-```
+You can include built-in environments similar to latex `theorem` and `definition` as follows:
+```markdown
 {% capture ENV_NAME %}
 You can write the content of your environment here. You can include **Markdown** and even LaTeX, e.g.,
 
 $$ a^2 + b^2 = c^2 $$
 {% endcapture %}
-{% include theorem.html title="ENV_TITLE" content=ENV_NAME %}
-```
-Replace `theorem.html` with `definition.html` for `definition` environment.
 
-### Automatic TOC
-
-You can use a built-in automatic table of content (TOC) by adding the following to your post:
+{% include theorem.html type="Theorem" title="ENV_TITLE" content=ENV_NAME %}
 ```
-{% include toc.html %}
-```
-However, you need to follow several simple rules so that TOC can parse correctly:
-- Only `h2` and `h3` will be included and structured.
-- Add `{: ._sec }` after your title, e.g.
-   ```
-   ## Section 1
-   {: ._sec }
-   ```
-   This tells the `toc` that these `h2,h3` doms are the actual sections to be collected.
+- By default, `type="Theorem`. You can change it to `"Proposition", "Definition"`, etc. 
+- If `title` is specified, it plays the same role as `\begin{theorem}[title]`.
 
 
 ## Other Caveats
