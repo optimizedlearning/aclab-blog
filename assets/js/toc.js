@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
       var id = header.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
       header.id = id;
       if (header.tagName.toLowerCase() === 'h2') {
-        toc += `<li><a href="#${id}">${header.textContent}</a></li>`;
+        toc += `<li class="post-sec"><a href="#${id}">${header.textContent}</a></li>`;
       } else if (header.tagName.toLowerCase() === 'h3') {
-        toc += `<ul><li><a href="#${id}">${header.textContent}</a></li></ul>`;
+        toc += `<li class="post-subsec"><a href="#${id}">${header.textContent}</a></li>`;
       }
     });
   
