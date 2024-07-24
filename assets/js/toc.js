@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
         toc += `<li class="post-subsec"><a href="#${id}">${header.textContent}</a></li>`;
       }
     });
-  
-    tocList.innerHTML = toc;
+    
+    if (tocList) {
+      tocList.innerHTML = toc;
+    }
   });
   

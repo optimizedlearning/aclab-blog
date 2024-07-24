@@ -19,16 +19,16 @@ layout: default
     <!-- (Optional) TOC, latex macros -->
     {% assign use_toc = page.use_toc | default: false %}
     {%- if use_toc -%}
-        {% include toc.html %}
+        {%- include toc.html -%}
     {%- endif -%}
 
     {% assign use_macro = page.use_macro | default: false %}
     {%- if use_macro -%}
-        {% include latex_macros.html %}
+        {%- include latex_macros.html -%}
     {%- endif -%}
 
     <!-- Back to top button -->
-    {% include top_button.html %}
+    {%- include top_button.html -%}
 
     {{ content }}
   </div>

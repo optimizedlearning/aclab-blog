@@ -1,0 +1,93 @@
+/**
+ * Colors
+ */
+// text
+$text-emph-light:       #242D30;
+$text-emph-dark:        #E8E4E0;
+$text-light:            lighten($text-emph-light, 12%);
+$text-dark:             darken($text-emph-dark, 12%);
+// background
+$bg-light:              #F5F4F3;
+$bg-dark:               #1D1E20;
+$bg-2-light:            #f9f9f9;
+// $bg-2-dark:             #313230;
+$bg-3-light:            #efeeed;
+// $bg-3-dark:             #222324;
+$bg-3-dark:             #313230;
+$bg-2-dark:             #222324;
+// brand color
+$brand-primary-light:   #2196F3;
+$brand-primary-dark:    $brand-primary-light;
+$brand-secondary-light: $brand-primary-light;
+$brand-secondary-dark:  $brand-primary-dark;
+// link
+$link-light:            $brand-primary-light;
+$link-dark:             $brand-primary-dark;
+$link-visited-light:    $link-light;
+$link-visited-dark:     $link-dark;
+$link-hover-light:      lighten($link-light, 15%);
+$link-hover-dark:       lighten($link-dark, 15%);
+
+
+
+/**
+ * Dark Mode Themes
+ */
+$text-color:            'text-color';
+$text-important:        'text-important';
+$background-color:      'background-color';
+$background-2:          'background-2';
+$background-3:          'background-3';
+$brand-primary:         'brand-primary';
+$brand-secondary:       'brand-secondary';
+$link-color:            'link-color';
+$link-visited:          'link-visited';
+$link-hover:            'link-hover';
+$logo:                  'logo';
+
+$themes: (
+  light: (
+    text-color:         $text-light,
+    text-important:     $text-emph-light,
+    background-color:   $bg-light,
+    background-2:       $bg-2-light,
+    background-3:       $bg-3-light,
+    brand-primary:      $brand-primary-light,
+    brand-secondary:    $brand-secondary-light,
+    link-color:         $link-light,
+    link-visited:       $link-visited-light,
+    link-hover:         $link-hover-light,
+    logo:               url("../images/icons/"),
+  ),
+  dark: (
+    text-color:         $text-dark,
+    text-important:     $text-emph-dark,
+    background-color:   $bg-dark,
+    background-2:       $bg-2-dark,
+    background-3:       $bg-3-dark,
+    brand-primary:      $brand-primary-dark,
+    brand-secondary:    $brand-secondary-dark,
+    link-color:         $link-dark,
+    link-visited:       $link-visited-dark,
+    link-hover:         $link-hover-dark,
+    logo:               url("../images/icons/"),
+  ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

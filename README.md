@@ -24,13 +24,10 @@ Here's how you'd write your new post locally:
 
 Here's how you'd include your own images (same for pdf):
 1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
-2. Use the markdown
-   ```markdown
-   ![image-text](../../../assets/images/YOUR-DIRECTORY/IMAGE.jgp)
-   *IMAGE_CAPTION*
-   ```
-   Jekyll posts automatically have url of form `base_url/yyyy/mm/dd/TITLE.html`, so we need 3 `../` in relative url.
-   *This feels quite dumb, and I'm trying to figure out a clean solution.*
+2. Include this in your markdown:
+```markdown
+{% include figure.html url="images/YOUR-DIRECTORY/IMAGE.png" description="Caption of the image." %}
+```
 
 ### (Optional) Test your blog on your local device
 

@@ -3,24 +3,27 @@ layout: post
 title:  "Local Rademacher Complexity"
 author: "Jiujia Zhang"
 date:   2024-06-06 20:24:26 -0400
+use_toc: true
 ---
 
 Rademacher complexity is crucial in statistical learning theory for understanding generalization, model selection, and learnability. This post focuses on the generalization error and will discuss the paper: "Local Rademacher Complexity."
 
 Before diving into the paper, let's use a motivating example to explain **generalization error** and provide some intuition on **Rademacher complexity**. (Feel free to skip directly to the discussion of the paper if you prefer.)
 
----
+<!-- ---
 #### Table of Contents
 - [Motivation](#motivation)
     - [Generalization Error](#generalization-error)
     - [Rademacher Complexity](#rademacher-complexity)
 - [The Paper](#the-paper)
 
----
+--- -->
 
 ## Motivation
+{: ._sec }
 
 ### Generalization Error
+{: ._sec }
 
 Supervised learning involves learning a task from a dataset consisting of data-label pairs $\mathcal{S} = \{ (x_i, y_i) \}_{i=1}^{m}$ using a chosen model. We can denote any model as $f: \mathcal{X} \to \mathcal{Y}$, since even a complex neural network takes data $x \in \mathcal{X}$ and outputs a label $y \in \mathcal{Y}$. The explicit formulation of the model might be complicated or might not even exist, but it can always be represented in this abstract format. This form of abstraction is particularly useful in studying theoretical topics in terms of a class of functions with particular properties such as Lipschitz, non-negative, convex, etc.
 
@@ -39,6 +42,7 @@ $$\mathcal{L} (\ell_f) = \mathbb{E}_{(x,y) \in \mathcal{D}} [ \ell(f(x), y) ]$$
 We can only estimate how $f$ performs on $\mathcal{S}$. If $\mathcal{L}_{\mathcal{S}} (\ell\_f)$ is small, we hope $\mathcal{L} (\ell\_f)$ is also small. That is, we desire $\mathcal{L}\_{\mathcal{S}} (\ell_f) \approx \mathcal{L} (\ell_f)$. If this is the case, we say that $f$ generalizes well, and the discrepancy $\|\mathcal{L} (\ell_f) - \mathcal{L}\_{\mathcal{S}} (\ell_f)\|$ is referred to as the **generalization error**. Furthermore, we want to understand the worst-case scenario for any $f \in \mathcal{F}$, hence we consider $\sup\_{f \in \mathcal{F}}\|\mathcal{L} (\ell_f) - \mathcal{L}\_{\mathcal{S}} (\ell_f)\|$. Alternative explaination is that we desire a uniform generalization error for all $f \in \mathcal{F}$ through the supremum.
 
 ### Rademacher Complexity
+{: ._sec }
 
 Rademacher complexity is an important concept in studying generalization error. From classical results (refer to the original paper and more explanatory resources from Leture notes), the generalization error for bounded $\ell_f$ with probability at least $1-\delta$ is given by:
 $$\sup_{f \in \mathcal{F}}|\mathcal{L} (\ell_f) - \mathcal{L}_{\mathcal{S}} (\ell_f)| \lessapprox R_{\mathcal{S}} (\ell, \mathcal{F}) + \sqrt{\frac{\ln \frac{1}{\delta}}{|\mathcal{S}|}}$$
@@ -51,6 +55,7 @@ The interpretation of $R_{\mathcal{S}} (\ell, \mathcal{F})$ is to quantify the c
 ---
 
 ## The Paper
+{: ._sec }
 
 The paper aims to tighten the generalization bound through the notion of 'Local Rademacher Complexity' by effectively bounding the generalization error through the Rademacher complexity of a subset $\mathcal{F}_r \subset \mathcal{F}$. Additionally, the sample size-dependent term in the previous bound was $O(1 / \sqrt{\|\mathcal{S}\|})$, which the paper also seeks to improve.
 

@@ -1,0 +1,7 @@
+{% assign img_url = include.url | prepend: "../../../assets/" %}
+{% assign img_desc = include.description %}
+
+<figure>
+  <img src="{{ img_url }}" alt="{{ img_desc }}">
+  <span class="figcaption">{{ img_desc }}</span>
+</figure>

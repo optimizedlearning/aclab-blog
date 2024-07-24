@@ -43,8 +43,7 @@ However, the kernelized perceptron has a non-linear boundary defined as
 
 $$\langle \phi(\w), \phi(\x)\rangle _\calF = -x_1^3 + x_2 = 0 \iff x_2 = x_1^3.$$
 
-![perceptron decison boundary](../../../assets/images/20240612/perceptron.png)
-*Decision boundary of linear perceptron (left) and kernelized perceptron (right).*
+{% include figure.html url="images/20240612/perceptron.png" description="Decision boundary of linear perceptron (left) and kernelized perceptron (right)." %}
 
 ---
 
