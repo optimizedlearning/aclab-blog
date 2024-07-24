@@ -8,6 +8,13 @@
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
+  <!-- Immediately invoked function to set the theme -->
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme') || 'theme-dark';
+      document.documentElement.classList.add(theme);  // Apply the theme to the <html> element
+    })();
+  </script>
   <!-- Add MathJax -->
   <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
