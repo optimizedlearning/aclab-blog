@@ -37,9 +37,9 @@ Overall, numerical integration in 1-dimension is very well studied. Given the re
 
 ### Multi-dimensional Problem
 Now we consider the case of $s > 1$. Analogous to the 1-dimensional case, with $n$ evaluation points, we are essentially estimating $I_s(f)$ by computing the volume of hyper-rectangles:  
-$$I_s(f)& := \int_{0}^{1} \cdots \int_{0}^{1}  f(x_1, \cdots, x_s) \, d x_1 \cdots d x_s  \\
+$$ \begin{align}I_s(f)& := \int_{0}^{1} \cdots \int_{0}^{1}  f(x_1, \cdots, x_s) \, d x_1 \cdots d x_s  \\
         & \approx \sum_{i_1=0}^{n-1} \cdots \sum_{i_s=0}^{n-1} w_{i_1} \cdots w_{i_s}  f(x_{i_1}, \cdots, x_{i_s}) \\
-        & = \underbrace{\sum_{i_1=0}^{n-1}  w_{i_1}  \cdots \underbrace{ \sum_{i_{s-1}=0}^{n-1} w_{i_{s-1}} \underbrace{\sum_{i_s=0}^{n-1} w_{i_s}  f(x_{i_1}, \cdots, x_{i_s})}_{n \text{ evaluation}} }_{n^2 \text{ evaluation}}}_{n^s \text{ evaluation}} := Q_{s, n} (f)$$
+        & = \underbrace{\sum_{i_1=0}^{n-1}  w_{i_1}  \cdots \underbrace{ \sum_{i_{s-1}=0}^{n-1} w_{i_{s-1}} \underbrace{\sum_{i_s=0}^{n-1} w_{i_s}  f(x_{i_1}, \cdots, x_{i_s})}_{n \text{ evaluation}} }_{n^2 \text{ evaluation}}}_{n^s \text{ evaluation}} := Q_{s, n} (f) \end{align}$$
 Since this approximation totally consists of $n^s$ function evaluations, we have 
 $$| Q_{s, n}(f) - I_s(f)| \le O(\frac{1}{n^{1/s}})$$
 
