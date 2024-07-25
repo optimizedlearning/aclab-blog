@@ -77,8 +77,10 @@ img {
 /**
  * Figures
  */
-figure > img {
+figure img {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .figcaption {
@@ -126,6 +128,10 @@ h1, h2, h3, h4, h5, h6 {
   @include themed() {
     color: t($text-important);
   }
+}
+
+h4, h5, h6 {
+  font-weight: 500;
 }
 
 
@@ -187,9 +193,9 @@ blockquote {
 pre,
 code {
   @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-light;
+  // border: 1px solid $grey-color-light;
   border-radius: 3px;
-  background-color: #eef; // TODO: color theme for syntax highlighting
+  // background-color: #eef; // TODO: color theme for syntax highlighting
 }
 
 code {

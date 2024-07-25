@@ -1,7 +1,8 @@
 ---
-layout: post
-title:  "A dummy blog post"
-date:   2024-05-29
+layout:     post
+title:      "A dummy blog post"
+date:       2024-05-29
+published:  false
 ---
 We can use `MathJax` for printing latex equations in the posts: use `$` for inline math delimiter, and `$$` for display math delimiter. For example, inline math like $x=\sqrt{y}$, or math equations like
 

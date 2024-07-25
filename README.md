@@ -26,8 +26,9 @@ Here's how you'd include your own images (same for pdf):
 1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
 2. Include this in your markdown:
 ```markdown
-{% include figure.html url="images/YOUR-DIRECTORY/IMAGE.png" description="Caption of the image." %}
+{% include figure.html url="/images/YOUR-DIRECTORY/IMAGE.png" description="Caption of the image." width="100%" %}
 ```
+- Without specification, width defaults to "100%" (full width).
 
 ### (Optional) Test your blog on your local device
 
