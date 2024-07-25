@@ -113,7 +113,7 @@ D^{\ast}(S) = \sup_{\x \in [0,1]^{s}} \left| \prod_{j=1}^{s} x_j - \frac{1}{n} \
 $$
 
 {% endcapture %}
-{% include theorem.html title="Koksma–Hlawka inequality" content=Koksma–Hlawka-inequality %}
+{% include theorem.html title="Koksma–Hlawka inequality" content="Koksma–Hlawka-inequality" %}
 
 The Koksma–Hlawka inequality also decompose the approximation error into function dependent term $V(f)$ and a sequence dependent term $D^{\ast}(S)$. 
 - For the function dependent term $V(f)$, it depends on the regularity of $f$ captured by higher-order partial derivatives $\frac{\partial^{|I|} f}{ \partial \bu_{I}}$ for some multi index $I \subset [s]$ (for detailed explaination and examples on higher order partial derivatives see next section ), this is essentially analogous to the function dependent part appeared in the classical methods since it measures maximum amount function variation in any possible direction.
