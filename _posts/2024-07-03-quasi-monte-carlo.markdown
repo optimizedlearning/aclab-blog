@@ -10,6 +10,7 @@ use_toc: true
 <div style="display:none">
 $
 \newcommand{\x}{\mathbf{x}}
+
 \newcommand{\bu}{\mathbf{u}}
 $
 </div>
@@ -92,7 +93,7 @@ Notice above bound is function $f$ dependent, and $n$ dependent as the classical
 
 Above bound is stochastic and can potentially have high variance, if we are seeking for a deterministic approximation error guarantee as the classical methods, we should choose those sequence of evaluation points deterministically. Quasi-Monte Carlo chooses a particular sequence of evaluation points that distribute **evenly** on $[0,1]^s$, and the **eveness** is different from equally spaced but in the sense of 
 **low discrepancy** which is captured by the bound for arbitrary sequence of deterministic evaluation sequence, known as the **Koksma–Hlawka inequality**.
-{% capture Koksma–Hlawka inequality %}
+{% capture Koksma–Hlawka-inequality %}
 For any $S = \{ \x_0, \x_1, \cdots \x_{n-1} \} \subset [0,1]^s$
 
 $$
@@ -112,7 +113,7 @@ D^{\ast}(S) = \sup_{\x \in [0,1]^{s}} \left| \prod_{j=1}^{s} x_j - \frac{1}{n} \
 $$
 
 {% endcapture %}
-{% include theorem.html title="Koksma–Hlawka inequality" content=Koksma–Hlawka inequality %}
+{% include theorem.html title="Koksma–Hlawka inequality" content=Koksma–Hlawka-inequality %}
 
 The Koksma–Hlawka inequality also decompose the approximation error into function dependent term $V(f)$ and a sequence dependent term $D^{\ast}(S)$. 
 - For the function dependent term $V(f)$, it depends on the regularity of $f$ captured by higher-order partial derivatives $\frac{\partial^{|I|} f}{ \partial \bu_{I}}$ for some multi index $I \subset [s]$ (for detailed explaination and examples on higher order partial derivatives see next section ), this is essentially analogous to the function dependent part appeared in the classical methods since it measures maximum amount function variation in any possible direction.
