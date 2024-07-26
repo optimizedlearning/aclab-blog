@@ -22,12 +22,12 @@ layout: default
 
   <div class="post-content e-content" itemprop="articleBody">
     <!-- (Optional) TOC, latex macros -->
-    {% assign use_toc = page.use_toc | default: false %}
+    {%- assign use_toc = page.use_toc | default: false -%}
     {%- if use_toc -%}
         {%- include toc.html -%}
     {%- endif -%}
 
-    {% assign use_macro = page.use_macro | default: false %}
+    {%- assign use_macro = page.use_macro | default: false -%}
     {%- if use_macro -%}
         {%- include latex_macros.html -%}
     {%- endif -%}
@@ -44,7 +44,40 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 
-  <footer class="post-footer" hidden>
-    previous and next post, coming soon...
+  <footer class="post-footer">
+    {%- assign prevPost = null -%}
+    {%- assign nextPost = null -%}
+    {%- assign updatePrevPost = true -%}
+    {%- assign updateNextPost = false -%}
+
+    {%- for post in site.posts -%}
+      {%- if updateNextPost -%}
+        {%- assign nextPost = post -%}
+        {%- assign updateNextPost = false -%}
+      {%- endif -%}
+
+      {% if post.url == page.url %}
+        {% assign updatePrevPost = false %}
+        {% assign updateNextPost = true %}
+      {% endif %}
+
+      {% if updatePrevPost %}
+        {% assign prevPost = post %}
+      {% endif %}
+    {% endfor %}
+
+    {% if nextPost %}
+      <span class="prev-post">
+        &lt Prev <br/>
+        <a class="ellipsis" title="{{ nextPost.title }}" href="{{ nextPost.url | relative_url }}">{{ nextPost.title }}</a>
+      </span>
+    {% endif %}
+
+    {% if prevPost %}
+      <span class="next-post">
+        Next &gt; <br/>
+        <a class="ellipsis" title="{{ prevPost.title }}" href="{{ prevPost.url | relative_url }}">{{ prevPost.title }}</a>
+      </span>
+    {% endif %}
   </footer>
 </article>

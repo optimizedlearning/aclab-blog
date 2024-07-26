@@ -295,3 +295,32 @@
     }
   }
 }
+
+// post footer
+ $next-post-width: 300px;
+
+ .ellipsis {
+   max-width: $next-post-width;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: inline-block;
+ }
+ 
+ .prev-post, .next-post {
+   display: inline-block;
+   @include relative-font-size(1.125);
+   @include media-query($on-palm) {
+     @include relative-font-size(1.05);
+   }
+   font-weight: 500;
+ }
+ 
+ .prev-post {
+   float: left;
+ }
+ 
+ .next-post {
+   float: right;
+   text-align: right;
+ }
