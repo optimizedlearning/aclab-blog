@@ -10,7 +10,6 @@ use_toc: true
 <div style="display:none">
 $
 \newcommand{\x}{\mathbf{x}}
-
 \newcommand{\bu}{\mathbf{u}}
 $
 </div>
@@ -40,7 +39,7 @@ $$I_s(f):= \int_{0}^1 f(x) \, d x $$
 
 The most naive approach is analogous to the Riemann integral upper approximation: selecting $n$ equally spaced points in the interval $[0,1]$ with width $w_i = \frac{1}{n}$ and approximating the area under the curve with the sum of rectangles defined by those evaluation points, as depicted below:
 
-{% include figure.html url="images/20240703/numerical_1d.png" description="1d numerical integration" %}
+{% include figure.html url="/images/20240703/numerical_1d.png" description="1d numerical integration" width="60%" %}
 
 In this way, the approximation to $I_s(f)$ is
 
@@ -75,9 +74,9 @@ As dimension increase, the approximation error $\rightarrow O(1)$. This means th
 Monte Carlo method generally refers to sampling from a specific distribution and summarize the statistics for some approximation tasks [Wikepedia: Monte Carlo Method](https://en.wikipedia.org/wiki/Monte_Carlo_method).
 In the context of numerical integration, we sample $n$ evaluation points i.i.d. from $[0,1]^s$ and approximate the integral:
 
-$$ Q_{s,n} (f) := \frac{1}{n} \sum_{i=0}^{n-1} f(\bx_i) $$
+$$ Q_{s,n} (f) := \frac{1}{n} \sum_{i=0}^{n-1} f(\x_i) $$
 
-Note $Q_{s,n}(f)$ is random through this method, hence the approximation error is anticipated in the probabilistic sense $E[ | I_s(f) - Q_{s,n}(f)|]$. By Jensen's inequality, it suffices to bound
+Note $Q_{s,n}(f)$ is random through this method, hence the approximation error is anticipated in the probabilistic sense $E[ \| I_s(f) - Q_{s,n}(f)\|]$. By Jensen's inequality, it suffices to bound
 
 $$E[ | I_s(f) - Q_{s,n}(f)|] \le \sqrt{E[ | I_s(f) - Q_{s,n}(f)|^2]}$$
 
@@ -93,7 +92,7 @@ Notice above bound is function $f$ dependent, and $n$ dependent as the classical
 
 Above bound is stochastic and can potentially have high variance, if we are seeking for a deterministic approximation error guarantee as the classical methods, we should choose those sequence of evaluation points deterministically. Quasi-Monte Carlo chooses a particular sequence of evaluation points that distribute **evenly** on $[0,1]^s$, and the **eveness** is different from equally spaced but in the sense of 
 **low discrepancy** which is captured by the bound for arbitrary sequence of deterministic evaluation sequence, known as the **Koksma–Hlawka inequality**.
-{% capture Koksma–Hlawka-inequality %}
+{% capture Koksma-Hlawka-inequality %}
 For any $S = \{ \x_0, \x_1, \cdots \x_{n-1} \} \subset [0,1]^s$
 
 $$
@@ -113,10 +112,10 @@ D^{\ast}(S) = \sup_{\x \in [0,1]^{s}} \left| \prod_{j=1}^{s} x_j - \frac{1}{n} \
 $$
 
 {% endcapture %}
-{% include theorem.html title="Koksma–Hlawka inequality" content="Koksma–Hlawka-inequality" %}
+{% include theorem.html title="Koksma–Hlawka inequality" content=Koksma-Hlawka-inequality %}
 
 The Koksma–Hlawka inequality also decompose the approximation error into function dependent term $V(f)$ and a sequence dependent term $D^{\ast}(S)$. 
-- For the function dependent term $V(f)$, it depends on the regularity of $f$ captured by higher-order partial derivatives $\frac{\partial^{|I|} f}{ \partial \bu_{I}}$ for some multi index $I \subset [s]$ (for detailed explaination and examples on higher order partial derivatives see next section ), this is essentially analogous to the function dependent part appeared in the classical methods since it measures maximum amount function variation in any possible direction.
+- For the function dependent term $V(f)$, it depends on the regularity of $f$ captured by higher-order partial derivatives $\frac{\partial^{\|I\|} f}{ \partial \bu_{I}}$ for some multi index $I \subset [s]$ (for detailed explaination and examples on higher order partial derivatives see next section ), this is essentially analogous to the function dependent part appeared in the classical methods since it measures maximum amount function variation in any possible direction.
 - In terms of sequence dependent terms $D^{\ast}(S)$, that is the difference between the volume of the hyper rectangle from the origin to vetex $\x$ and the percentage of evaluation points contained in the hyper rectangle. At this point, it might still sound convoluted, or has absolutely no difference to the equally spaced sequence. We will have a $1$ dimensional version to explain this concept better as well as some pictorial examples in 2d shortly.
 
 The Koksma–Hlawka inequality basically says selecting $S$ that minimizes $D^{\ast}(S)$ will give smaller approximation error, and such $S$ is refered as the **low-discrepancy sequence**.
