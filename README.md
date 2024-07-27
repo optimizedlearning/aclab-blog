@@ -20,16 +20,6 @@ Here's how you'd write your new post locally:
    This tells Jekyll your markdown uses the pre-defined `post` template.
 3. Write your blog. You can refer to [this post](https://github.com/optimizedlearning/aclab-blog/blob/master/_posts/2024-05-29-dummy-post.markdown) for syntax. You can also use popular markdown editors (e.g., from VSCode) to preview your post. 
 
-### Include an image, a pdf, etc.
-
-Here's how you'd include your own images (same for pdf):
-1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
-2. Include this in your markdown:
-```markdown
-{% include figure.html url="/images/YOUR-DIRECTORY/IMAGE.png" description="Caption of the image." width="100%" %}
-```
-- Without specification, width defaults to "100%" (full width).
-
 ### (Optional) Test your blog on your local device
 
 Optionally, you may want to preview your blog before you upload it. Here's how you can do it:
@@ -49,8 +39,33 @@ And here's how you'd upload it:
 1. You can directly go to `_posts/` directory in GitHub and manually upload your markdown.
 2. Or you can clone this repo `git clone https://github.com/optimizedlearning/aclab-blog.git` and sync the new post via git.
 
+---
 
 ## Advanced features
+
+### Relative URL
+
+When you put a hyperlink within this site, make sure to add a `relative_url` tag. For example,
+```
+[link to this page]({{ "/2024/05/29/dummy-post.html" | relative_url }})
+```
+Similarly, you can add an image by
+```
+![alt text]({{ "/assets/images/PATH/TO/IMAGE" | relative_url }})
+```
+
+### Include an image similar to Latex
+
+Here's how you'd include your images in a similar way to the `\begin{figure}` environment in Latex.
+
+1. Go to `assets/images/YOUR-DIRECTORY` and upload your images.
+2. Include this in your markdown:
+   ```markdown
+   {% include figure.html url="/images/YOUR-DIRECTORY/IMAGE.png" description="Caption of the image." width="100%" %}
+   ```
+- Make sure the url starts with "/images/XXX".
+- `description` with be the caption under the image.
+- `width` can be set to be percentage width, like `60%`, or pixel width like `400px`. Without specification, width defaults to "100%" (full width).
 
 ### Automatic TOC
 
@@ -121,6 +136,8 @@ $$ a^2 + b^2 = c^2 $$
 - By default, `type="Theorem`. You can change it to `"Proposition", "Definition"`, etc. 
 - If `title` is specified, it plays the same role as `\begin{theorem}[title]`.
 
+
+---
 
 ## Other Caveats
 
