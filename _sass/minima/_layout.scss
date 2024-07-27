@@ -249,6 +249,42 @@
   @include relative-font-size(1.5);
 }
 
+// Customizing post blocks
+.post-list > li {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+	@include themed() {
+    background-color: t($background-3);
+    color:            t($text-color); 
+  }
+
+  > h3 {
+    margin: 8px 0;
+
+    a {
+      color: inherit !important;
+      text-decoration: none;
+    }
+  }
+}
+
+$excerpt-max-lines: 3;
+.post-excerpt {
+  color: $grey-color;
+  font-size: $small-font-size;
+  @extend %vertical-rhythm; // This extends the margin-bottom: 15px silent class.
+
+  display: -webkit-box;
+  -webkit-line-clamp: $excerpt-max-lines; /* Number of lines you want to display */
+  max-height: calc(#{$excerpt-max-lines * $base-line-height}em);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 
 /**

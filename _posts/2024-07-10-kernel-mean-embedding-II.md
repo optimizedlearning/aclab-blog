@@ -8,6 +8,8 @@ use_toc: true
 use_macro: true
 ---
 
+This post is a continuation of [Kernel Mean Embedding]({{ "/2024/06/12/kernel-mean-embedding.html" | relative_url }}). Check out this post if you haven't. In this second part, we will see an application of kernel mean embedding in statistics. As a motivating question, consider two distributions $P,Q$ and i.i.d. samples $X\_1,\ldots,X\_n\sim P, Y\_1,\ldots,Y\_n\sim Q$. We'd like to distinguish, statistically, whether $P$ and $Q$ are identical distribution. At the end of the day, we will see a hypothesis tesing using the concept of kernel mean embedding.
+
 <div style="display:none">
 $
 \newcommand{\sign}{\mathop{\mathrm{sgn}}}
@@ -15,8 +17,6 @@ $
 \newcommand{\one}{\mathbb{1}}
 $
 </div>
-
-This post is a continuation of [Kernel Mean Embedding](../../../2024/06/12/kernel-mean-embedding.html). Check out this post if you haven't. In this second part, we will see an application of kernel mean embedding in statistics. As a motivating question, consider two distributions $P,Q$ and i.i.d. samples $X\_1,\ldots,X\_n\sim P, Y\_1,\ldots,Y\_n\sim Q$. We'd like to distinguish, statistically, whether $P$ and $Q$ are identical distribution. At the end of the day, we will see a hypothesis tesing using the concept of kernel mean embedding.
 
 ## Recap: RKHS and Kernel Mean Embedding
 {: ._sec}

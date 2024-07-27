@@ -28,6 +28,7 @@ baseurl: "/aclab-blog" # the subpath of your site, e.g. /blog
 url: "https://zqzcalin.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 # github_username:  jekyll
+show_excerpts: true
 
 # Build settings
 theme: minima

@@ -7,13 +7,13 @@ use_toc: true
 use_macro: true
 ---
 
+The kernel method has been a popular technique widely used in machine learning literature. The kernel mean embedding extends the classical kernel method and measures similiarity of *probability distributions* instead of simply data points. This post provides a brief overview of the classical kernel method and the kernel mean embedding, mainly based on Chapter 2 and 3 in this [survey](https://arxiv.org/abs/1605.09522). Readers who are interested in more details can refer to the survey and this [lecture](https://mva-kernel-methods.github.io/course-2022-2023/lectures/).
+
 <div style="display:none">
 $
 \newcommand{\sign}{\mathop{\mathrm{sgn}}}
 $
 </div>
-
-The kernel method has been a popular technique widely used in machine learning literature. The kernel mean embedding extends the classical kernel method and measures similiarity of *probability distributions* instead of simply data points. This post provides a brief overview of the classical kernel method and the kernel mean embedding, mainly based on Chapter 2 and 3 in this [survey](https://arxiv.org/abs/1605.09522). Readers who are interested in more details can refer to the survey and this [lecture](https://mva-kernel-methods.github.io/course-2022-2023/lectures/).
 
 ## Kernel and RKHS
 {: ._sec }
