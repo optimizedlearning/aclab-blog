@@ -4,10 +4,12 @@ function scrollToTop() {
 
 document.addEventListener('scroll', function () {
 	var backToTopButton = document.getElementById('back-to-top');
-	// Hide button at page start.
-	if (window.scrollY > 300) {
-		backToTopButton.classList.remove('hidden');
-	} else {
-		backToTopButton.classList.add('hidden');
+	if (backToTopButton) {
+		// Hide button at page start.
+		if (window.scrollY > 300) {
+			backToTopButton.classList.remove('hidden');
+		} else {
+			backToTopButton.classList.add('hidden');
+		}
 	}
 });
