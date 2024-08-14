@@ -8,7 +8,7 @@ use_toc: true
 use_macro: true
 ---
 
-This post is a continuation of [Kernel Mean Embedding]({{ "/2024/06/12/kernel-mean-embedding.html" | relative_url }}). Check out this post if you haven't. In this second part, we will see an application of kernel mean embedding in statistics. As a motivating question, consider two distributions $P,Q$ and i.i.d. samples $X\_1,\ldots,X\_n\sim P, Y\_1,\ldots,Y\_n\sim Q$. We'd like to distinguish, statistically, whether $P$ and $Q$ are identical distribution. At the end of the day, we will see a hypothesis tesing using the concept of kernel mean embedding.
+This post is a continuation of [Kernel Mean Embedding]({{ "/2024/06/12/kernel-mean-embedding.html" | relative_url }}). Check out this post if you haven't. In this second part, we will see an application of kernel mean embedding in statistics. As a motivating question, consider two distributions $P,Q$ and i.i.d. samples $X\_1,\ldots,X\_n\sim P, Y\_1,\ldots,Y\_n\sim Q$. We'd like to distinguish, statistically, whether $P$ and $Q$ are identical distributions. At the end of the day, we will see a hypothesis tesing using the concept of kernel mean embedding.
 
 <div style="display:none">
 $
@@ -24,24 +24,35 @@ $
 ### Kernel, Riesz Representation Theorem, and Reproducing Kernel Hilbert Space
 {: ._sec}
 
-Before we start the main topic, let's recap the main concepts from last time. Given any data space $\calX$, consider an Hilbert space $\calH$ of functions $f:\x\mapsto f(\x)$ mapping from $\calX$ to $\RR$. For each $\x\in\calX$, we can define $\calF_x: f\mapsto f(\x)$, which is a linear functional mapping from $\calH$ to $\RR$. If $\calH$ satisfies that every $\calF_\x$ is bounded (and this is true if $\calH$ is an RKHS), then by Riesz' representation theorem, each $\calF_\x$ corresponds to a unique $k_\x\in\calH$ such that $\calF_\x[f] = \langle k_\x, f \rangle\_\calH$ for all $f\in\calH$. Recall that $\calF[f]=f(\x)$. In other words, there exists a map $k: \x\mapsto k_\x$ such that
+Before we start the main topic, let's recap the main concepts from last time. Given any data space $\calX$, consider an Hilbert space $\calH$ of functions $f:\x\mapsto f(\x)$ mapping from $\calX$ to $\RR$. For each $\x\in\calX$, we can define $\calF_x: f\mapsto f(\x)$, which is a linear functional mapping from $\calH$ to $\RR$. If $\calH$ satisfies that every $\calF_\x$ is bounded (and this is true if $\calH$ is an RKHS), then by Riesz' representation theorem, each $\calF_\x$ corresponds to a unique $k_\x\in\calH$ such that $\calF_\x[f] = \langle k_\x, f \rangle\_\calH$ for all $f\in\calH$. Recall that $\calF_\x[f]=f(\x)$. In other words, there exists a map $\phi: \x\mapsto k_\x$ such that
 
 $$
 f(\x) = \langle k_\x, f \rangle_\calH, \ \forall f\in\calH.
 $$
 
-This is known as the <ins>reproducing property</ins>. Moreover, note that the map $k$ is a feature map from $\calX$ to $\calH$. Therefore, with slight abuse of notation, we can define a kernel $k(\x,\y) = \langle k_\x, k_\y \rangle\_\calH$. This is known as the <ins>reproducing kernel</ins> of the RKHS $\calH$. As a consequence of the reproducing property and reproducing kernel, each function $k_\x$ can be explicitly written as $k_\x(\y)=k(\x,\y)$. To conclude, we have:
+This is known as the <ins>reproducing property</ins>. Moreover, note that $\phi$ is a feature map from $\calX$ to $\calH$. Therefore, with slight abuse of notation, we can define a kernel $k(\x,\y) = \langle k_\x, k_\y \rangle\_\calH$. This is known as the <ins>reproducing kernel</ins> of the RKHS $\calH$. As a consequence of the reproducing property and reproducing kernel, each function $k_\x$ can be explicitly written as 
 
 $$
 \begin{align}
-k(\x,\y) &= \langle k_\x, k_\y \rangle_\calH, \\
-k_\x(\y) &= k(\x,\y).
+k_\x(\y)
+&= \langle k_\y, k_\x \rangle_\calH \tag{reproducing property} \\
+&= k(\x,\y). \tag{reproducing kernel}
 \end{align}
 $$
 
 This construction is depicted in the following graph.
 
 {% include figure.html url="/images/20240710/rkhs.png" width="60%" description="Illustration of how an RKHS $\calH$ is constructed from a data space $\calX$." %}
+
+To conclude, we summarize the most important identities below:
+
+$$
+\begin{align}
+f(\x) &= \langle k_\x, f\rangle_\calH, \\
+k(\x,\y) &= \langle k_\x, k_\y \rangle_\calH, \\
+k_\x(\y) &= k(\x,\y).
+\end{align}
+$$
 
 
 ### Kernel Mean Embedding

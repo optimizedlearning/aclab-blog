@@ -217,3 +217,70 @@ $$k(\x,\y) = \langle k_\x, k_\y \rangle _\calH.$$
 
 ## Kernel Mean Embedding
 {: ._sec }
+
+In the previous sections, we looked at RKHS in a deterministic setting. Naturally, we can extend these concepts to the probabilistic setting. From now on, let's assume $\calX$ is a probability space with some probability measure $\P$ and consider probability distributions on $\calX$. Earlier we've seen that each data point $\x\in\calX$ corresponds to a unique function $k_\x\in\calH$ defined as $k_\x(\y) = k(\x,\y)$. Similarly, we can define <ins>kernel mean embedding</ins> as the "expectation" of $k_\x$.
+
+{% capture kme-definition %}
+Let $P$ be a distribution on $\calX$. The kernel mean embedding of $P$ is a function in $\calH$ defined as
+
+$$
+\mu_P(\y) := \Ex_{X\sim P}[k(X,\y)].
+$$
+{% endcapture %}
+{% include theorem.html type="Definition" title="Kernel Mean Embedding" content=kme-definition %}
+
+In the deterministic scenario, $k_\x$ always exists for all $\x\in\calX$ as a result of Riesz' representation theorem. However, in this probabilistic setting, the existence of $\mu_P$ is unclear. 
+
+{% capture kme-existence %}
+Let $P$ be a distribution on $\calX$. If $P$ satisfies
+
+$$
+\Ex_{X\sim P} \left[\sqrt{k(X,X)}\right] < \infty,
+$$
+
+then there exists a unique kernel mean embedding $\mu_P$ of $P$, and it satisfies
+
+$$
+\begin{align}
+\langle \mu_P, f \rangle_\calH &= \Ex_{X\sim P}[f(X)],\ \forall f\in\calH, \\
+\langle \mu_P, \mu_Q \rangle_\calH &= \Ex_{X\sim P, Y\sim Q}[k(X,Y)], \forall Q \text{ with valid } \mu_Q.
+\end{align}
+$$
+{% endcapture %}
+{% include theorem.html type="Proposition" title="Existence of Kernel Mean Embedding" content=kme-existence %}
+
+The core of the proof is again Riesz representation theorem. For each distribution $P$, consider a linear functional $\calF_P$ defined as $\calF_P[f] = \Ex_{X\sim P}[f(X)]$. For now, suppose $\calF_P$ is bounded, then Riesz theorem implies that there exists a unique $\mu_P\in\calH$ such that
+
+$$
+\langle \mu_P, f\rangle_\calH = \calF_P[f] = \Ex_{X\sim P}[f(X)], ~~ \forall f\in\calH.
+$$
+
+Consequently, for any distribution $Q$ that has bounded $\calF_Q$ (and thus $\mu_Q$ exists), 
+
+$$
+\begin{align}
+\langle \mu_P, \mu_Q\rangle_\calH
+&= \Ex_{X\sim P}[\mu_Q(X)] \\
+&= \Ex_{X\sim P, Y\sim Q}[k(X,Y)].
+\end{align}
+$$
+
+Hence, it remains to study when $\calF_P$ is bounded. Note that
+
+$$
+\begin{align}
+|\calF_P[f]|
+&= |\Ex_{X\sim P}[f(X)]| \\
+&\le \Ex_{X\sim P}[|f(X)|] \tag{Jensen's inequality} \\
+&= \Ex_{X\sim P}[|\langle k_X, f\rangle_\calH|] \tag{reproducing property} \\
+&\le \Ex_{X\sim P}[\|k_X\|_\calH\|f\|_\calH] \tag{Cauchy-Schwarz} \\
+&= \Ex_{X\sim P}\left[ \sqrt{k(X,X)} \right] \|f\|_\calH.
+\end{align}
+$$
+
+Hence, $\calF_P$ is bounded if and only if $\Ex_{X\sim P}[\sqrt{k(X,X)}] < \infty$. This concludes the proof.
+
+
+#### Conclusion 
+
+To summarize, in this blog, we've seen reproducing kernel Hilbert space in the deterministic setting and its extension, kernel mean embedding, to the probabilistic setting. In the [next part]({{ "/2024/07/10/kernel-mean-embedding-II.html" | relative_url }}), we will continue to see an application of kernel mean embedding in statistical testing.
