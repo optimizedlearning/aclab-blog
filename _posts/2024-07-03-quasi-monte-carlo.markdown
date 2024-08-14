@@ -124,7 +124,8 @@ $$
 
 The Koksma–Hlawka inequality decomposes the approximation error into a function-dependent term $V(f)$ and a sequence-dependent term $D^{\ast}(S)$:
 
-- The function-dependent term $V(f)$ depends on the regularity of $f$, captured by higher-order partial derivatives $\frac{\partial^{|I|} f}{ \partial \bu_{I}}$ for some multi-index $I \subset [s]$. This is analogous to the function-dependent part in classical methods, as it measures the maximum variation of the function in any possible direction. (more details for derivatives with multi index, see suplimentary section)
+- The function-dependent term $V(f)$ depends on the regularity of $f$, captured by higher-order partial derivatives $\frac{\partial^{\|I\|} f}{ \partial \bu_{I}}$ for some multi-index $I \subset [s]$. This is analogous to the function-dependent part in classical methods, as it measures the maximum variation of the function in any possible direction. (more details for derivatives with multi index, see suplimentary section)
+
 - The sequence-dependent term $D^{\ast}(S)$ represents the difference between the volume of the hyper-rectangle from the origin to vertex $\x \in [0,1]^s$ and the percentage of evaluation points contained in the hyper-rectangle. 
 
 This concept of low $D^{\ast}(S)$ might still seem abstract, but it becomes clearer with a visual example. A post by [Martin Roberts](https://stats.stackexchange.com/users/34989/martin-roberts) on StackExchange provides an excellent illustration in 2D.
@@ -145,7 +146,7 @@ $$
         f(x) = f(1) - \int_{x}^{1} f'(y) dy = f(1) - \int_{0}^{1} \mathbf{1}[0, y] (x) f'(y) dy 
 $$
 
-Then first we spell out the definition of the approximation difference by selecting arbitrary sequence og $x_1, \cdotsm, x_n \in [0,1]$:
+Then first we spell out the definition of the approximation difference by selecting arbitrary sequence of $x_1, \cdots, x_n \in [0,1]$:
 
 $$
 \begin{align*} 
@@ -153,17 +154,19 @@ $$
 & = \int_{0}^{1} \left( f(1) - \int_{0}^{1} \mathbf{1}[0, y] (x) f'(y) dy \right) dx -  \frac{1}{n} \sum_{i=0}^{n-1} f(1) - \int_{0}^{1} \mathbf{1}[0, y] (x_i) f'(y) dy \\
 & = \int_{0}^{1} f(1) dx -  \int_{0}^{1} \int_{0}^{1} \mathbf{1}[0, y] (x) f'(y) dy dx - \frac{1}{n} \sum_{i=0}^{n-1} f(1) -  \frac{1}{n} \sum_{i=0}^{n-1} \int_{0}^{1} \mathbf{1}[0, y] (x_i) f'(y) dy \\
 & =  -  \int_{0}^{1} \int_{0}^{1} \mathbf{1}[0, y] (x) f'(y) dy dx  -  \frac{1}{n} \sum_{i=0}^{n-1} \int_{0}^{1} \mathbf{1}[0, y] (x_i) f'(y) dy \\
-& = - \int_{0}^{1} \underbrace{ \left( \int_{0}^{1} \mathbf{1}[0, y] (x)  dx -   \frac{1}{n} \sum_{i=0}^{n-1}  \mathbf{1}[0, y] (x_i)  \right) }_{\text{local discrepancy: } \Delta(y, x_0, x_1, \cdots x_{n-1}) }f'(y) dy
+& = - \int_{0}^{1} \underbrace{ \left( \int_{0}^{1} \mathbf{1}[0, y] (x)  dx - \frac{1}{n} \sum_{i=0}^{n-1}  \mathbf{1}[0, y] (x_i)  \right) }_{\text{local discrepancy: } \Delta(y, x_0, x_1, \cdots x_{n-1}) }f'(y) dy
 \end{align*}
 $$
 
 where the second line is due to appling FTC to $f(x), f(x_i)$ respectively. Then the first and the third term cancells out which resultant to the forth line. Finally by Holder's inequality
 
 $$ 
+\begin{align}
 | I_s (f) - Q_{s,n}(f)| & \le \sup_{y \in [0, 1]} | \Delta(y, x_0, x_1, \cdots x_{n-1})| \cdot \int_{0}^{1} |f'(y) | dy
+\end{align}
 $$
 
-This is exactly the Koksma–Hlawka inequality for $x = 1$. It is clear that $\sup_{y \in [0, 1]} | \Delta(y, x_0, x_1, \cdots x_{n-1})|$ is correlated to how uniform evaluation points being placed on $[0,1]$. Surly equally spaced points seems a great idea but in high dimension it is no longer the case.
+This is exactly the Koksma–Hlawka inequality for $x = 1$. It is clear that $\sup_{y \in [0, 1]} \| \Delta(y, x_0, x_1, \cdots x_{n-1})\|$ is correlated to how uniform evaluation points being placed on $[0,1]$. Surly equally spaced points seems a great idea but in high dimension it is no longer the case.
 
 In terms of general $s$ dimensional proof, we extend above argument through defining appropriate Reproducing kernel Hilbert space, see reference Chapter 3 of [Dick, J., Kuo, F. Y., & Sloan, I. H. (2013)](https://web.maths.unsw.edu.au/~josefdick/preprints/DKS2013_Acta_Num_Version.pdf)
 
@@ -172,7 +175,7 @@ In terms of general $s$ dimensional proof, we extend above argument through defi
 
 This is a supplimental section to explain the notation for higher-order partial derivatives $\frac{\partial^{\|I\|} f}{ \partial \bu_{I}}$ for some multi index $I \subset [s]$ if needed. Some more generalized reference for this notation can be found via [Evans, L. C. (2022)](http://home.ustc.edu.cn/~wclw8181/wffc.files/Partial%20Differential%20Equations.Evans.pdf) Appendix A. But for our purpose to understand function variantions in the Koksma–Hlawka inequality, we only requires a very specific format of it. Hence we will only define an abstract way definition as well as some solid examples that is approproiate for understanding the Koksma–Hlawka inequality.
 
-Let $I \subset [s] $, and $|I|$ be the cardinality of $I$, $\bu = [u_1, u_2, \cdots, n_s]$
+Let $I \subset [s] $, and $\|I\|$ be the cardinality of $I$, $\bu = [u_1, u_2, \cdots, n_s]$
 
 $$ 
 \frac{\partial^{|I|} f}{ \partial \bu_{I}} = \prod_{i \in I }\frac{\partial }{\partial u_i} f
